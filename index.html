@@ -130,7 +130,7 @@ noClicks++;
 let btn = document.getElementById("no");
 let msg = document.getElementById("response");
 
-/* move button randomly in larger space */
+/* move button randomly */
 
 let x = Math.random()*220 - 110;
 let y = Math.random()*90 - 45;
@@ -153,8 +153,6 @@ msg.innerHTML="Hmm I know what you are doing 😏<br>Now what will you do?";
 
 btn.innerHTML="Okay fine, Yes 😌";
 
-/* clicking it now acts as YES */
-
 btn.onclick = accepted;
 
 }
@@ -164,7 +162,7 @@ btn.onclick = accepted;
 function accepted(){
 
 document.getElementById("response").innerHTML=
-"Yaaayyyyy!! 🥳🎉❤️<br>That's my girl! 😌💖<br>I love you so much Sushrita 😘💕";
+"Yaaayyyyy!! 🥳🎉❤️<br>That's my girl! 😌💖<br>I love you so much 😘💕";
 
 document.getElementById("celebration").style.display="block";
 
