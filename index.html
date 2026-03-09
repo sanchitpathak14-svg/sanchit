@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>A small question</title>
 
 <style>
+
 body{
 font-family:Arial;
 text-align:center;
@@ -14,13 +16,21 @@ justify-content:center;
 align-items:center;
 color:white;
 margin:0;
+overflow:hidden;
 }
 
 .box{
 background:rgba(0,0,0,0.35);
 padding:40px;
 border-radius:20px;
-max-width:350px;
+max-width:380px;
+position:relative;
+z-index:2;
+}
+
+p{
+font-size:18px;
+line-height:1.6;
 }
 
 button{
@@ -41,6 +51,32 @@ color:white;
 background:white;
 color:black;
 }
+
+#celebration{
+font-size:35px;
+margin-top:20px;
+display:none;
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+animation:floatUp 6s linear infinite;
+pointer-events:none;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
 </style>
 </head>
 
@@ -48,35 +84,87 @@ color:black;
 
 <div class="box">
 
-<h2>A small question for you…</h2>
+<h2>Sushrita, a small question for you…</h2>
 
 <p>
-I know I made mistakes and hurt you.<br><br>
-I'm truly sorry for that.<br><br>
-Can we fix this together?
+
+I know I made mistakes and probably annoyed you more than I should have 🙈  
+
+I'm really sorry, baby.  
+
+I can't change the past…  
+but I promise I'll do better from now on.  
+
+Can you forgive me? 🥺❤️
+
 </p>
 
-<button id="yes" onclick="yes()">YES ❤️</button>
-<button id="no" onmouseover="move()">NO</button>
+<button id="yes" onclick="accepted()">YES ❤️</button>
+<button id="no" onclick="move()">🫣 No</button>
+
+<p id="response"></p>
+
+<div id="celebration">
+🎉🎉❤️🥳💖🎊✨💃
+</div>
 
 </div>
 
 <script>
 
-function yes(){
-alert("Thank you… that really means a lot ❤️");
-}
+/* no button logic */
+
+let noClicks=0;
 
 function move(){
-let x=Math.random()*300;
-let y=Math.random()*300;
+
+noClicks++;
 
 let btn=document.getElementById("no");
 
-btn.style.position="absolute";
-btn.style.left=x+"px";
-btn.style.top=y+"px";
+let x=(Math.random()*80)-40;
+let y=(Math.random()*40)-20;
+
+btn.style.transform=`translate(${x}px,${y}px)`;
+
+if(noClicks>=3){
+btn.innerHTML="Okay fine... YES ❤️";
+btn.style.background="#ff4d6d";
+btn.style.color="white";
+btn.onclick=accepted;
 }
+
+}
+
+function accepted(){
+
+document.getElementById("response").innerHTML=
+"Your response has been recorded 💌<br>Thank you for giving me a chance to make things right ❤️";
+
+document.getElementById("celebration").style.display="block";
+
+}
+
+/* floating hearts */
+
+setInterval(function(){
+
+const heart=document.createElement("div");
+heart.className="heart";
+
+const hearts=["❤️","💓","💖","💗","💕"];
+heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+},500);
 
 </script>
 
