@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +39,7 @@ border:none;
 border-radius:10px;
 margin:10px;
 cursor:pointer;
+transition:0.2s;
 }
 
 #yes{
@@ -87,16 +87,11 @@ opacity:0;
 <h2>Sushrita, a small question for you…</h2>
 
 <p>
-
 I know I made mistakes and probably annoyed you more than I should have 🙈  
-
-I'm really sorry, baby.  
-
-I can't change the past…  
-but I promise I'll do better from now on.  
-
+I'm really sorry.  
+I can't change the past… but I promise I'll do better from now on.  
+<br><br>
 Can you forgive me? 🥺❤️
-
 </p>
 
 <button id="yes" onclick="accepted()">YES ❤️</button>
@@ -105,43 +100,45 @@ Can you forgive me? 🥺❤️
 <p id="response"></p>
 
 <div id="celebration">
-🎉🎉❤️🥳💖🎊✨💃
+🎉🥳💖🎊✨💃
 </div>
 
 </div>
 
 <script>
 
-/* no button logic */
-
-let noClicks=0;
+let noClicks = 0;
 
 function move(){
 
 noClicks++;
 
-let btn=document.getElementById("no");
+let btn = document.getElementById("no");
 
-let x=(Math.random()*80)-40;
-let y=(Math.random()*40)-20;
+let x = (Math.random()*80)-40;
+let y = (Math.random()*40)-20;
 
-btn.style.transform=`translate(${x}px,${y}px)`;
+btn.style.transform = `translate(${x}px,${y}px)`;
 
-if(noClicks>=3){
-btn.innerHTML="Okay fine... YES ❤️";
-btn.style.background="#ff4d6d";
-btn.style.color="white";
-btn.onclick=accepted;
+/* after 3 no clicks automatically accept */
+
+if(noClicks >= 3){
+accepted();
 }
 
 }
 
 function accepted(){
 
-document.getElementById("response").innerHTML=
-"Your response has been recorded 💌<br>Thank you for giving me a chance to make things right ❤️";
+document.getElementById("response").innerHTML =
+"Wait wait… you said yes? 😳❤️<br>Okay… I promise to use my brain next time 😅";
 
-document.getElementById("celebration").style.display="block";
+document.getElementById("celebration").style.display = "block";
+
+/* hide buttons */
+
+document.getElementById("yes").style.display="none";
+document.getElementById("no").style.display="none";
 
 }
 
@@ -149,14 +146,14 @@ document.getElementById("celebration").style.display="block";
 
 setInterval(function(){
 
-const heart=document.createElement("div");
-heart.className="heart";
+const heart = document.createElement("div");
+heart.className = "heart";
 
-const hearts=["❤️","💓","💖","💗","💕"];
-heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+const hearts = ["❤️","💓","💖","💗","💕"];
+heart.innerHTML = hearts[Math.floor(Math.random()*hearts.length)];
 
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(20+Math.random()*20)+"px";
+heart.style.left = Math.random()*100 + "vw";
+heart.style.fontSize = (20 + Math.random()*20) + "px";
 
 document.body.appendChild(heart);
 
